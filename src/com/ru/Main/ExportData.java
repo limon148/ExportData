@@ -16,6 +16,21 @@ public class ExportData {
 		System.out.println(info);
 		parser = fr.getCSVParser();
 		listExportersTwoProducts(parser, "gold", "diamonds");
+		parser = fr.getCSVParser();
+		int x = numberOfExporters(parser, "gold");
+		System.out.println(x);
+	}
+
+	
+
+	private int numberOfExporters(CSVParser parser, String string) {
+		int i = 0;
+		for(CSVRecord record : parser){
+			if(record.get("Exports").contains(string)){
+				i++;
+			}
+		}
+		return i;
 	}
 
 	private void listExportersTwoProducts(CSVParser parser, String string, String string2) {
