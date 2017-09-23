@@ -10,8 +10,15 @@ public class ExportData {
 	}
 
 	private void tester() {
-		// TODO Auto-generated method stub
+		FileResource fr = new FileResource();
+		CSVParser parser = fr.getCSVParser();
+		String info = countryinfo(parser, "Garmany");
+		System.out.println(info);
+	}
+
+	private String countryinfo(CSVParser parser, String string) {
 		
+		return "NOT FOUND";
 	}
 
 }
