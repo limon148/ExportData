@@ -1,4 +1,5 @@
 package com.ru.Main;
+
 import edu.duke.*;
 import org.apache.commons.csv.*;
 
@@ -19,9 +20,28 @@ public class ExportData {
 		parser = fr.getCSVParser();
 		int x = numberOfExporters(parser, "gold");
 		System.out.println(x);
+		parser = fr.getCSVParser();
+		bigExporters(parser, "$999,999,999");
 	}
 
 	
+
+	private void bigExporters(CSVParser parser, String string) {
+		String x = string.replace("$", "");
+		x = x.replaceAll(",", "");
+		long i = Long.parseLong(x);
+		
+		for(CSVRecord record : parser){
+			String a = record.get("Value (dollars)");
+			String b = a.replace("$", "");
+			b = b.replaceAll(",", "");
+			long j = Long.parseLong(b);
+			if(j > i){
+				System.out.println(record.get("Country") + " " + record.get("Value (dollars)"));
+			}
+		}
+		
+	}
 
 	private int numberOfExporters(CSVParser parser, String string) {
 		int i = 0;
@@ -51,5 +71,5 @@ public class ExportData {
 		}
 		return "NOT FOUND";
 	}
-
+	
 }
